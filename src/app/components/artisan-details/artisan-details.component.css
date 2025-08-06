@@ -1,0 +1,215 @@
+/* Color Variables */
+:host {
+  --primary-blue: #007bff;
+  --accent-yellow: #ffc107;
+  --white: #ffffff;
+  --light-gray: #f8f9fa;
+  --dark-gray: #6c757d;
+}
+
+/* Main Container */
+.container.py-5 {
+  margin-top: 120px;
+  background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 123, 255, 0.08);
+  position: relative;
+  min-height: 500px;
+}
+
+.container.py-5::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-yellow) 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Row Styling */
+.container .row {
+  padding: 2rem 0;
+  align-items: center;
+}
+
+/* Image Styling */
+.container .img-fluid.rounded.shadow {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+  transition: all 0.3s ease;
+  border: 4px solid var(--white);
+}
+
+.container .img-fluid.rounded.shadow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.25);
+}
+
+/* Content Column */
+.container .col-md-8 {
+  padding: 2rem;
+  position: relative;
+}
+
+.container .col-md-8::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--accent-yellow) 100%);
+  border-radius: 2px;
+}
+
+/* Title Styling */
+.container .col-md-8 h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.container .col-md-8 h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 1rem;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-yellow);
+  border-radius: 2px;
+}
+
+/* Paragraph Styling */
+.container .col-md-8 p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-blue);
+  transition: all 0.3s ease;
+  color: var(--dark-gray);
+}
+
+.container .col-md-8 p:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+}
+
+.container .col-md-8 p strong {
+  color: var(--primary-blue);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* Rating Styling */
+.container .text-warning {
+  color: var(--accent-yellow);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.container .text-warning i {
+  filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Button Styling */
+.container .btn-success.mt-3 {
+  background: linear-gradient(135deg, var(--accent-yellow) 0%, #ffcd39 100%);
+  border: none;
+  color: #333;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+  margin-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.container .btn-success.mt-3:hover {
+  background: linear-gradient(135deg, #ffcd39 0%, var(--accent-yellow) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+  color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container.py-5 {
+    margin-top: 80px;
+  }
+  
+  .container .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .container .col-md-4 {
+    margin-bottom: 2rem;
+  }
+  
+  .container .img-fluid.rounded.shadow {
+    height: 280px;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .container .col-md-8 {
+    padding: 1rem;
+  }
+  
+  .container .col-md-8::before {
+    display: none;
+  }
+  
+  .container .col-md-8 h2 {
+    font-size: 2rem;
+    padding-left: 0;
+    text-align: center;
+  }
+  
+  .container .col-md-8 h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .container .col-md-8 p {
+    text-align: left;
+  }
+  
+  .container .btn-success.mt-3 {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container.py-5 {
+    margin-top: 60px;
+  }
+  
+  .container .col-md-8 h2 {
+    font-size: 1.8rem;
+  }
+  
+  .container .img-fluid.rounded.shadow {
+    height: 250px;
+    max-width: 250px;
+  }
+}

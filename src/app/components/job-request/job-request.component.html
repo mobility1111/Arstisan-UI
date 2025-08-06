@@ -1,0 +1,63 @@
+<div class="container py-5">
+  <div class="card p-4 p-md-5 mx-auto" style="max-width: 900px;">
+    <div class="text-center mb-4">
+      <h2>Request a Service</h2>
+      <p class="text-muted">Fill out the form below and we'll connect you with skilled artisans</p>
+    </div>
+    
+    <form (ngSubmit)="submitRequest()">
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="name" 
+                   [(ngModel)]="jobRequest.customerName" name="name" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" 
+                   [(ngModel)]="jobRequest.phoneNumber" name="phone" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="location" class="form-label">Your Location</label>
+            <input type="text" class="form-control" id="location" 
+                   [(ngModel)]="jobRequest.location" name="location" required>
+          </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="service" class="form-label">Type of Service</label>
+            <input type="text" class="form-control" id="service" 
+                   [(ngModel)]="jobRequest.serviceType" name="service" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="date" class="form-label">Preferred Date</label>
+            <input type="date" class="form-control" id="date" 
+                   [(ngModel)]="jobRequest.preferredDate" name="date" required>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Full-width Textarea -->
+      <div class="mb-4">
+        <label for="description" class="form-label">Job Description</label>
+        <textarea class="form-control" id="description" rows="4"
+                  [(ngModel)]="jobRequest.description" name="description" required></textarea>
+      </div>
+      
+      <!-- Full-width Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">
+          <span *ngIf="!isSubmitting">Submit Request</span>
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

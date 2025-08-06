@@ -1,0 +1,30 @@
+<h2>Job Details</h2>
+<p><strong>Service:</strong> {{ job.serviceType }}</p>
+<p><strong>Customer:</strong> {{ job.customerName }}</p>
+<p><strong>Location:</strong> {{ job.location }}</p>
+<p><strong>Status:</strong> {{ job.status }}</p>
+<p><strong>Request Date:</strong> {{ job.requestDate | date:'short' }}</p>
+
+<div *ngIf="availableArtisans.length > 0">
+  <h4>Assign Artisan</h4>
+  <select [(ngModel)]="selectedArtisanId">
+    <option *ngFor="let artisan of availableArtisans" [value]="artisan.id">
+      {{ artisan.fullName }} ({{ artisan.serviceId}})
+    </option>
+  </select>
+
+  <input type="number" [(ngModel)]="artisanCharge" placeholder="Artisan charge" />
+  <p>Total with commission: ₦{{ computeTotal() }}</p>
+
+  <button (click)="assignArtisan()">Assign Artisan</button>
+</div>
+
+<h4>Update Status</h4>
+<select [(ngModel)]="job.status">
+  <option value="Pending">Pending</option>
+  <option value="Assigned">Assigned</option>
+  <option value="In Progress">In Progress</option>
+  <option value="Completed">Completed</option>
+</select>
+
+<button (click)="updateJobStatus()">Update Status</button>

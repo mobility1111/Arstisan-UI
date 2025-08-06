@@ -1,0 +1,15 @@
+<h2>Available Service Types</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of serviceTypes">
+      <td>{{ service.name }}</td>
+      <td>{{ service.description }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,380 @@
+/* Featured Artisans Section */
+.featured-artisans-section {
+  background: #ffffff;
+  position: relative;
+}
+
+/* Section Header */
+.section-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.title-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ffc107, #ffcd39);
+  border-radius: 2px;
+}
+
+/* Artisan Card */
+.artisan-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.artisan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15);
+  border-color: #007bff;
+}
+
+/* Featured Badge */
+.featured-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #ffc107, #ffcd39);
+  color: #007bff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 3;
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+}
+
+/* Image Section */
+.artisan-image-wrapper {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.artisan-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.artisan-card:hover .artisan-img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 123, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.artisan-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.btn-view-profile {
+  background: #ffc107;
+  color: #007bff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  transform: translateY(20px);
+}
+
+.artisan-card:hover .btn-view-profile {
+  transform: translateY(0);
+}
+
+.btn-view-profile:hover {
+  background: #ffcd39;
+  transform: scale(1.05);
+}
+
+/* Card Content */
+.card-content {
+  padding: 1.5rem;
+}
+
+/* Artisan Header */
+.artisan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.artisan-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #007bff;
+  margin: 0;
+}
+
+.artisan-status {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dc3545;
+  margin-right: 5px;
+  animation: pulse 2s infinite;
+}
+
+.artisan-status.online .status-dot {
+  background: #28a745;
+}
+
+.artisan-status.online {
+  color: #28a745;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Service and Location */
+.artisan-service, .artisan-location {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.service-icon, .location-icon {
+  color: #007bff;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Rating */
+.artisan-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 8px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 1.1rem;
+  color: #e9ecef;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #ffc107;
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+.rating-text {
+  font-weight: 600;
+  color: #007bff;
+  font-size: 0.9rem;
+}
+
+.reviews-count {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* Stats */
+.artisan-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e6f3ff);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.stat {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Action Buttons */
+.artisan-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary-action {
+  flex: 1;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-action:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary-action {
+  width: 45px;
+  height: 45px;
+  background: #ffc107;
+  color: #007bff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-action:hover {
+  background: #ffcd39;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+/* View All Button */
+.btn-view-all {
+  background: linear-gradient(135deg, #ffc107, #ffcd39);
+  color: #007bff;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+}
+
+.btn-view-all:hover {
+  background: linear-gradient(135deg, #ffcd39, #ffe066);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 193, 7, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+  
+  .artisan-image-wrapper {
+    height: 250px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .artisan-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .artisan-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .stat-number, .stat-label {
+    margin: 0;
+  }
+  
+  .artisan-actions {
+    flex-direction: column;
+  }
+  
+  .btn-secondary-action {
+    width: 100%;
+    height: 45px;
+    border-radius: 25px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .featured-artisans-section {
+    padding: 3rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem;
+  }
+  
+  .artisan-image-wrapper {
+    height: 220px;
+  }
+}

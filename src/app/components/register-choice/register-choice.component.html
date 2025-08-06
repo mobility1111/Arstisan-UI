@@ -1,0 +1,50 @@
+<!-- register-choice.component.html -->
+<div class="container-fluid main-container">
+  <div class="container">
+    <div class="choice-wrapper">
+      <div class="text-center">
+        <h2 class="main-title p-5">Who are you?</h2>
+        <p class="subtitle">Select an option below to get started on your journey</p>
+      </div>
+      
+      <div class="row justify-content-center g-4">
+        <div class="col-lg-5 col-md-6">
+          <div class="choice-card">
+            <div class="card-icon artisan-icon">
+              🔧
+            </div>
+            <h4 class="card-title">I'm an Artisan</h4>
+            <p class="card-description">
+              Ready to showcase your skills and connect with customers who need your expertise? Join our platform and grow your business.
+            </p>
+            <button class="btn btn-custom btn-artisan w-100" (click)="goToArtisanRegister()">
+              👤➕ Register as Artisan
+            </button>
+          </div>
+        </div>
+        
+        <div class="col-lg-5 col-md-6">
+          <div class="choice-card">
+            <div class="card-icon customer-icon">
+              🛒
+            </div>
+            <h4 class="card-title">I'm a Customer</h4>
+            <p class="card-description">
+              Looking for skilled professionals to help with your projects? Find trusted artisans and get quality services delivered.
+            </p>
+            <button class="btn btn-custom btn-customer w-100" (click)="goToCustomerRegister()">
+              ✅ Register as Customer
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <p class="login-link">
+          Already have an account? 
+          <a routerLink="/login">Login here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

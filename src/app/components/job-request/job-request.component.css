@@ -1,0 +1,180 @@
+/* Color Variables */
+:root {
+  --primary-blue: #2563eb;
+  --primary-blue-light: #dbeafe;
+  --accent-yellow: #f59e0b;
+  --accent-yellow-light: #fef3c7;
+  --white: #ffffff;
+  --dark: #1e293b;
+  --gray: #64748b;
+  --light-gray: #f1f5f9;
+}
+
+/* Base Styles */
+.request-container {
+  padding: 4rem 1rem 2rem; /* Increased top padding */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.request-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 700px;
+  border: none;
+  margin-top: 2rem; /* Additional spacing from top */
+}
+
+.request-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.request-title {
+  color: var(--dark);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.request-subtitle {
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.request-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--dark);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: var(--light-gray);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background-color: var(--white);
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Button Styles */
+.submit-btn {
+  background: linear-gradient(to right, var(--primary-blue), var(--primary-blue-light));
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #1d4ed8, var(--primary-blue));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .request-container {
+    padding: 3rem 1rem 2rem; /* Adjusted for mobile */
+  }
+  
+  .request-card {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .request-title {
+    font-size: 1.5rem;
+  }
+  
+  .request-form {
+    gap: 1.25rem;
+  }
+}
+
+/* Add this to your component's CSS file */
+.container {
+  padding-top: 4rem;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+/* Add some spacing between columns */
+.col-md-6 {
+  padding: 0 0.75rem;
+}
+
+/* Hover effects for inputs */
+.form-control:hover {
+  border-color: #86b7fe;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 2rem;
+  }
+  .card {
+    padding: 1.5rem !important;
+  }
+  .col-md-6 {
+    padding: 0;
+  }
+}

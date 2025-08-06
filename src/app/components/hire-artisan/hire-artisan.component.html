@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h3>Request Service</h3>
+
+  <form [formGroup]="hireForm" (ngSubmit)="submitRequest()">
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Preferred Date</label>
+      <input type="date" class="form-control" formControlName="preferredDate" />
+    </div>
+
+    <div class="mb-3">
+      <label>Additional Notes</label>
+      <textarea class="form-control" formControlName="notes"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Request</button>
+  </form>
+</div>

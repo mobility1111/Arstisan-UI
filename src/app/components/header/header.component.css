@@ -1,0 +1,22 @@
+.navbar-brand span:first-child {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #d1ecf1 !important;
+}
+
+.btn-info {
+  background-color: #17c1e8;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #11b2d3;
+}

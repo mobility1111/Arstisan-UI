@@ -1,0 +1,56 @@
+/* Top spacing between header and content */
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  padding: 4rem 0 2rem; /* increased top padding */
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* More compact cards */
+.choice-card {
+  padding: 2rem 1.5rem; /* reduced padding */
+  height: auto; /* allow height to adapt */
+  min-height: 300px;
+}
+
+/* Smaller card icons */
+.card-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+}
+
+/* More compact button */
+.btn-custom {
+  padding: 0.625rem 1.5rem; /* smaller padding */
+  font-size: 0.95rem; /* slightly smaller text */
+}
+
+/* Hover effect enhancements for artisan button */
+.btn-artisan {
+  background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-artisan:hover {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+/* Hover effect enhancements for customer button */
+.btn-customer {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-customer:hover {
+  background: linear-gradient(135deg, #f59e0b, #facc15) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.35);
+}

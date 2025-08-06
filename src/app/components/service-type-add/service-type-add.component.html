@@ -1,0 +1,12 @@
+<h2>Add New Service Type</h2>
+<form (ngSubmit)="addServiceType()">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" [(ngModel)]="serviceType.name" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" [(ngModel)]="serviceType.description" name="description"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Service Type</button>
+</form>

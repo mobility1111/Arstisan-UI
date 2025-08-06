@@ -1,0 +1,134 @@
+<section class="featured-artisans-section py-5">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3">Featured Artisans</h2>
+        <p class="section-subtitle">Meet our top-rated skilled professionals</p>
+        <div class="title-divider mx-auto"></div>
+      </div>
+    </div>
+
+    <!-- Artisans Grid -->
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let artisan of artisans; let i = index">
+        <div class="artisan-card h-100" [attr.data-aos]="'fade-up'" [attr.data-aos-delay]="i * 100">
+          <!-- Featured Badge -->
+          <div class="featured-badge" *ngIf="artisan.featured">
+            <i class="bi bi-star-fill me-1"></i>
+            Featured
+          </div>
+          
+          <!-- Artisan Image -->
+          <div class="artisan-image-wrapper">
+            <img [src]="artisan.photoUrl" 
+                 class="artisan-img" 
+                 [alt]="artisan.name + ' - ' + artisan.service"
+                 loading="lazy">
+            <div class="image-overlay">
+              <div class="overlay-content">
+                <button class="btn-view-profile">
+                  <i class="bi bi-eye me-2"></i>View Profile
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content">
+            <!-- Header -->
+            <div class="artisan-header">
+              <h5 class="artisan-name">{{ artisan.name }}</h5>
+              <!-- <div class="artisan-status" [class.online]="artisan.isOnline">
+                <span class="status-dot"></span>
+                {{ artisan.isOnline ? 'Online' : 'Offline' }}
+              </div> -->
+            </div>
+
+            <!-- Service -->
+            <div class="artisan-service">
+              <i class="bi bi-tools service-icon"></i>
+              <span>{{ artisan.service }}</span>
+            </div>
+
+            <!-- Location -->
+            <div class="artisan-location">
+              <i class="bi bi-geo-alt-fill location-icon"></i>
+              <span>{{ artisan.location }}</span>
+            </div>
+
+            <!-- Rating -->
+            <div class="artisan-rating">
+              <div class="stars">
+                <span class="star" 
+                      *ngFor="let star of getStars(artisan.rating); let j = index"
+                      [class.filled]="j < artisan.rating">
+                  &#9733;
+                </span>
+              </div>
+              <span class="rating-text">{{ artisan.rating }}/5</span>
+              <span class="reviews-count">({{ artisan.reviewsCount || 0 }} reviews)</span>
+            </div>
+
+            <!-- Stats -->
+            <!-- <div class="artisan-stats">
+              <div class="stat">
+                <span class="stat-number">{{ artisan.completedJobs || 0 }}</span>
+                <span class="stat-label">Jobs Done</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">{{ artisan.experience || 0 }}+</span>
+                <span class="stat-label">Years Exp.</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">₦{{ artisan.hourlyRate || 0 }}</span>
+                <span class="stat-label">Per Hour</span>
+              </div>
+            </div> -->
+
+            <!-- Action Buttons -->
+            <!-- <div class="artisan-actions">
+              <button class="btn-primary-action" (click)="contactArtisan(artisan)">
+                <i class="bi bi-telephone me-2"></i>Contact Now
+              </button>
+              <button class="btn-secondary-action" (click)="viewProfile(artisan)">
+                <i class="bi bi-person-lines-fill"></i>
+              </button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View All Button -->
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <button class="btn-view-all" (click)="viewAllArtisans()">
+          View All Artisans
+          <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- <div class="container py-5">
+  <h3 class="mb-4">Featured Artisans</h3>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let artisan of featuredArtisans">
+      <div class="card h-100">
+        <img [src]="artisan.photoUrl" class="card-img-top" alt="artisan photo">
+        <div class="card-body">
+          <h5 class="card-title">{{ artisan.fullName }}</h5>
+          <p class="card-text">{{ artisan.service }}</p>
+          <p class="text-muted">{{ artisan.location }}</p>
+          <p class="text-warning"><i class="bi bi-star-fill"></i> {{ artisan.rating }}</p>
+          <a [routerLink]="['/artisan', artisan.id]" class="btn btn-outline-primary btn-sm">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

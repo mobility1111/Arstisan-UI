@@ -1,0 +1,87 @@
+<!-- HTML -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top" style="min-height: 80px;">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/landing">
+      <span class="fs-3 fw-bold me-2" style="color: yellow;">F</span>
+      <span class="fw-semibold">FixitNow</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/landing">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/services">Services</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link text-white" routerLink="/artisans">Artisans</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+  <a class="nav-link text-white" routerLink="/request-service">Request a Service</a>
+</li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/contact">Contact</a>
+        </li>
+ <li class="nav-item ms-3" *ngIf="!isLoggedIn">
+    <a class="btn btn-info text-white px-3 py-2 rounded-pill" routerLink="/register-choice">
+      Sign Up/Login
+    </a>
+  </li>
+
+  <li class="nav-item ms-3" *ngIf="isLoggedIn">
+    <span class="text-white me-3">Hi, {{ currentUserFullName }}</span>
+    <button class="btn btn-warning px-3 py-2 rounded-pill" (click)="logout()">Logout</button>
+  </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Updated CSS -->
+<style>
+.navbar {
+  min-height: 80px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-brand span:first-child {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-link {
+  font-weight: 500;
+  padding: 0.75rem 1rem !important;
+}
+
+.nav-link:hover {
+  color: #d1ecf1 !important;
+}
+
+.btn-info {
+  background-color: #17c1e8;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #11b2d3;
+}
+
+/* Add padding to body to account for fixed navbar */
+body {
+  padding-top: 80px;
+}
+</style>

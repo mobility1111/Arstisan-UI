@@ -1,0 +1,157 @@
+<!-- artisan-register.component.html -->
+<div class="registration-container">
+  <div class="floating-elements">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="form-card">
+      <h3 class="form-title">Artisan Registration</h3>
+      
+      <form [formGroup]="registerForm" (ngSubmit)="registerArtisan()" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="fullName"
+              formControlName="fullName" 
+              class="form-control has-icon" 
+              placeholder="Enter your full name"
+            >
+            <span class="input-icon">👤</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <div class="input-group">
+            <input 
+              type="email" 
+              id="email"
+              formControlName="email" 
+              class="form-control has-icon" 
+              placeholder="Enter your email address"
+            >
+            <span class="input-icon">📧</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="phoneNumber">Phone Number</label>
+            <div class="input-group">
+              <input 
+                type="tel" 
+                id="phoneNumber"
+                formControlName="phoneNumber" 
+                class="form-control has-icon" 
+                placeholder="Enter your phone number"
+              >
+              <span class="input-icon">📱</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-group">
+              <input 
+                type="password" 
+                id="password"
+                formControlName="password" 
+                class="form-control has-icon" 
+                placeholder="Create a secure password"
+              >
+              <span class="input-icon">🔒</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="serviceType">Service Category</label>
+            <div class="select-wrapper">
+              <select 
+                id="serviceType"
+                formControlName="serviceTypeId" 
+                class="form-control"
+              >
+                <option value="">-- Select Your Service --</option>
+                <option *ngFor="let service of serviceTypes" [value]="service.id">
+                  {{ service.name }}
+                </option>
+              </select>
+              <span class="select-icon">🛠️</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="location">Location</label>
+            <div class="select-wrapper">
+              <select 
+                id="location"
+                formControlName="locationId" 
+                class="form-control"
+              >
+                <option value="">-- Select Your Location --</option>
+                <option *ngFor="let loc of locations" [value]="loc.id">
+                  {{ loc.name }}
+                </option>
+              </select>
+              <span class="select-icon">📍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Profile Photo</label>
+          <div class="file-input-wrapper" [class.file-uploaded]="selectedFileName" (click)="fileInput.click()">
+            <input 
+              #fileInput
+              type="file" 
+              (change)="onFileSelected($event)" 
+              class="file-input"
+              accept="image/*"
+              style="display: none;"
+            >
+            <div class="file-upload-content" *ngIf="!selectedFileName">
+              <div class="file-upload-icon">📸</div>
+              <div class="file-upload-text">
+                Click to upload your profile photo
+                <br><small>JPG, PNG or GIF (Max 5MB)</small>
+              </div>
+            </div>
+            <div class="file-uploaded-content" *ngIf="selectedFileName">
+              <div class="file-success-icon">✅</div>
+              <div class="file-success-text">
+                <strong>{{ selectedFileName }}</strong>
+                <br><small>{{ selectedFileSize }} - Click to change</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          [disabled]="isSubmitting || registerForm.invalid" 
+          type="submit" 
+          class="submit-btn"
+        >
+          <span class="btn-content">
+            <span *ngIf="!isSubmitting">Register as Artisan</span>
+            <span *ngIf="isSubmitting" class="loading-content">
+              <span class="spinner"></span>
+              Registering...
+            </span>
+          </span>
+        </button>
+
+        <div class="success-message" *ngIf="message">
+          <div class="success-icon">🎉</div>
+          <div class="success-text">{{ message }}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

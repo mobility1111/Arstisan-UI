@@ -1,0 +1,22 @@
+<div class="container py-4">
+  <h2 class="text-center mb-4">All Job Requests</h2>
+
+  <div *ngIf="jobRequests.length === 0" class="alert alert-info text-center">
+    No job requests found.
+  </div>
+
+  <div class="row" *ngIf="jobRequests.length > 0">
+    <div class="col-md-6 mb-4" *ngFor="let job of jobRequests">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.serviceType }}</h5>
+          <p><strong>Customer Name:</strong> {{ job.customerName }}</p>
+          <p><strong>Phone:</strong> {{ job.phoneNumber }}</p>
+          <p><strong>Location:</strong> {{ job.location }}</p>
+          <p><strong>Description:</strong> {{ job.description }}</p>
+          <p><strong>Preferred Date:</strong> {{ job.preferredDate | date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

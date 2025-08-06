@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <h2 class="text-center mb-4">Our Artisans</h2>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let artisan of artisans">
+      <div class="card h-100 shadow-sm">
+        <img [src]="artisan.photoUrl" class="card-img-top" alt="Artisan Photo" *ngIf="artisan.photoUrl" />
+        <div class="card-body">
+          <h5 class="card-title">{{ artisan.fullName }}</h5>
+          <p class="card-text"><strong>Service:</strong> {{ artisan.serviceType }}</p>
+          <p class="card-text"><strong>Location:</strong> {{ artisan.location }}</p>
+          <p class="card-text">
+            <strong>Rating:</strong>
+            <span class="text-warning">
+              <i class="bi bi-star-fill"></i> {{ artisan.rating }}
+            </span>
+          </p>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a class="btn btn-outline-primary btn-sm" [routerLink]="['/artisan', artisan.id]">
+              View Details
+            </a>
+            <button class="btn btn-success btn-sm">
+              Hire Artisan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
