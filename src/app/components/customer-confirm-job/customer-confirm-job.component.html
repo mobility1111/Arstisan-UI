@@ -1,0 +1,40 @@
+<div class="confirm-container">
+
+  <div class="card">
+
+    <h2 class="title">Confirm Job Completion</h2>
+    <p class="subtitle">
+      Please verify that the artisan has successfully completed your job.
+    </p>
+
+    <!-- Success Alert -->
+    <div *ngIf="successMessage" class="alert success-alert fade-in">
+      <span class="alert-icon">✔</span>
+      {{ successMessage }}
+    </div>
+
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="alert error-alert fade-in">
+      <span class="alert-icon">⚠</span>
+      {{ errorMessage }}
+    </div>
+
+    <button 
+      class="confirm-btn"
+      (click)="confirmJob()"
+      [disabled]="loading">
+
+      <ng-container *ngIf="!loading">
+        Confirm Completion
+      </ng-container>
+
+      <ng-container *ngIf="loading">
+        <span class="spinner"></span>
+        Processing...
+      </ng-container>
+
+    </button>
+
+  </div>
+
+</div>

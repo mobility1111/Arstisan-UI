@@ -5,5 +5,6 @@ export interface Customer {
   password: string;
   photoUrl: string;
   location: string;
+  phoneNumber?: string;
   role?: string;
 }

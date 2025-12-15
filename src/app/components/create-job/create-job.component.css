@@ -1,0 +1,112 @@
+/* Outer Wrapper */
+.job-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 70px 20px;
+}
+
+/* Rectangular Card */
+.job-card {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 40px 34px;
+  border-radius: 18px; /* Slightly rounded but clearly rectangular */
+  box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Title */
+.job-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: center;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.job-subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+/* Modern Form Groups */
+.form-group-modern {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group-modern label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Text Inputs */
+.form-group-modern input,
+.form-group-modern textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #dcdcdc;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+/* Hover + Focus effects */
+.form-group-modern input:hover,
+.form-group-modern textarea:hover {
+  border-color: #b4b4b4;
+}
+
+.form-group-modern input:focus,
+.form-group-modern textarea:focus {
+  border-color: #6C3BFF;
+  box-shadow: 0 0 0 3px rgba(108, 59, 255, 0.25);
+}
+
+/* Textarea height */
+.form-group-modern textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Submit Button */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  transition: 0.25s ease;
+  margin-top: 10px;
+}
+
+.btn-submit:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.18);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

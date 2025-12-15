@@ -30,6 +30,25 @@ import { AddLocationComponent } from './components/add-location/add-location.com
 import { ArtisanByLocationComponent } from './components/artisan-by-location/artisan-by-location.component';
 import { AboutComponent } from './components/about/about.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ArtisanProfileComponent } from './components/artisan-profile/artisan-profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { CreateJobComponent } from './components/create-job/create-job.component';
+import { MyJobsComponent } from './components/my-jobs/my-jobs.component';
+import { AdminJobListComponent } from './components/admin-job-list/admin-job-list.component';
+import { JobAssignComponent } from './components/job-assign/job-assign.component';
+import { JobChargeComponent } from './components/job-charge/job-charge.component';
+import { JobCompleteComponent } from './components/job-complete/job-complete.component';
+import { CustomerConfirmJobComponent } from './components/customer-confirm-job/customer-confirm-job.component';
+import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { EditCustomerProfileComponent } from './components/edit-customer-profile/edit-customer-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { EditJobComponent } from './components/edit-job/edit-job.component';
+import { NotificationBellComponent } from './components/notification-bell/notification-bell.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +76,29 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     LocationListComponent,
     AddLocationComponent,
     ArtisanByLocationComponent,
-    AboutComponent
+    AboutComponent,
+    ArtisanProfileComponent,
+    EditProfileComponent,
+    EditProfileComponent,
+    LocationListComponent,
+    AddLocationComponent,
+    CreateJobComponent,
+    MyJobsComponent,
+    AdminJobListComponent,
+    JobAssignComponent,
+    JobChargeComponent,
+    JobCompleteComponent,
+    CustomerConfirmJobComponent,
+    CustomerProfileComponent,
+    EditCustomerProfileComponent,
+    ChangePasswordComponent,
+    AdminDashboardComponent,
+    EditJobComponent,
+    NotificationBellComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ResetComponent,
+
   ],
   imports: [
     BrowserModule,

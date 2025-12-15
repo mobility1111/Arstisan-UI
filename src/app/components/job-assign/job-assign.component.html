@@ -1,0 +1,27 @@
+<div class="assign-container mt-5">
+
+  <div class="card">
+    <h2 class="title">Assign Artisan to Job</h2>
+
+    <div class="form-group">
+      <label class="label">Select Artisan</label>
+
+      <div class="select-wrapper">
+        <select class="modern-select" [(ngModel)]="selectedArtisan">
+          <option value="">-- Select Artisan --</option>
+          <option 
+            *ngFor="let artisan of artisans"
+            [value]="artisan.id">
+
+            {{ artisan.fullName }} ({{ artisan.serviceType }}) - {{ artisan.location }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button class="assign-btn" (click)="assign()">
+      Assign Artisan
+    </button>
+  </div>
+
+</div>

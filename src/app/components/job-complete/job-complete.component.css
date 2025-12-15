@@ -1,0 +1,85 @@
+/* Page container */
+.complete-container {
+  display: flex;
+  justify-content: center;
+  padding: 70px 20px; /* Strong top margin */
+}
+
+/* Glass Card */
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 34px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Gradient Title */
+.title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+/* Button Row */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* Confirm Button */
+.confirm-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  transition: 0.25s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.18);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #e0e0e0;
+  color: #333;
+  transition: 0.25s ease;
+}
+
+.cancel-btn:hover {
+  background: #cacaca;
+  transform: translateY(-2px);
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

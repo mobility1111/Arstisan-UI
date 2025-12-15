@@ -53,20 +53,69 @@
               <span class="input-icon">📱</span>
             </div>
           </div>
+<div class="form-group">
+  <label class="form-label" for="password">Password</label>
+  <div class="input-group password-group">
+    <input 
+      [type]="showPassword ? 'text' : 'password'" 
+      id="password"
+      formControlName="password" 
+      class="form-control has-icon has-toggle" 
+      placeholder="Create a secure password"
+    >
+    <span class="input-icon">🔒</span>
+    <span 
+      class="password-toggle" 
+      (click)="togglePasswordVisibility()"
+      [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+    >
+      <span *ngIf="!showPassword">👁️</span>
+      <span *ngIf="showPassword">🙈</span>
+    </span>
+    
+  </div>
+  <!-- Password Strength Indicator -->
+<div *ngIf="registerForm.get('password')?.value" class="password-strength">
+  <div class="strength-bar">
+    <div class="strength-fill" [style.width.%]="getPasswordStrength()" 
+         [ngClass]="getPasswordStrengthClass()"></div>
+  </div>
+  <small class="strength-text">
+    Password Strength: {{ getPasswordStrengthText() }}
+  </small>
+</div>
 
-          <div class="form-group">
-            <label class="form-label" for="password">Password</label>
-            <div class="input-group">
-              <input 
-                type="password" 
-                id="password"
-                formControlName="password" 
-                class="form-control has-icon" 
-                placeholder="Create a secure password"
-              >
-              <span class="input-icon">🔒</span>
-            </div>
-          </div>
+<!-- Password Requirements -->
+<div *ngIf="registerForm.get('password')?.value && passwordPolicy" class="password-requirements">
+  
+  <div class="requirement" [class.met]="hasMinLength()">
+    <i class="bi" [ngClass]="hasMinLength() ? 'bi-check-circle-fill' : 'bi-circle'"></i>
+    <span>{{ passwordPolicy.requiredLength }}+ characters</span>
+  </div>
+
+  <div *ngIf="passwordPolicy.requireUppercase" class="requirement" [class.met]="hasUppercase()">
+    <i class="bi" [ngClass]="hasUppercase() ? 'bi-check-circle-fill' : 'bi-circle'"></i>
+    <span>Uppercase letter</span>
+  </div>
+
+  <div *ngIf="passwordPolicy.requireLowercase" class="requirement" [class.met]="hasLowercase()">
+    <i class="bi" [ngClass]="hasLowercase() ? 'bi-check-circle-fill' : 'bi-circle'"></i>
+    <span>Lowercase letter</span>
+  </div>
+
+  <div *ngIf="passwordPolicy.requireDigit" class="requirement" [class.met]="hasNumber()">
+    <i class="bi" [ngClass]="hasNumber() ? 'bi-check-circle-fill' : 'bi-circle'"></i>
+    <span>Number</span>
+  </div>
+
+  <div *ngIf="passwordPolicy.requireSpecialCharacter" class="requirement" [class.met]="hasSpecialChar()">
+    <i class="bi" [ngClass]="hasSpecialChar() ? 'bi-check-circle-fill' : 'bi-circle'"></i>
+    <span>Special character</span>
+  </div>
+
+</div>
+
+</div>
         </div>
 
         <div class="form-row">

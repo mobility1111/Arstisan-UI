@@ -1,72 +1,91 @@
-<section class="hero-section" style="background-color: #007bff;">
+<section class="hero-section">
+
+  <!-- Floating Background Icons -->
   <div class="floating-elements">
     <i class="fas fa-hammer tool-icon"></i>
     <i class="fas fa-wrench tool-icon"></i>
     <i class="fas fa-screwdriver tool-icon"></i>
   </div>
-     
+
   <div class="container-fluid">
     <div class="row align-items-center min-vh-100">
+
+      <!-- Left Content -->
       <div class="col-lg-6 col-md-6">
         <div class="hero-content px-4 px-lg-5">
+
           <h1 class="hero-title">
             Your Trusted Plug<br>
             For Skilled<br>
-            <span style="color: #fbbf24;">Artisans</span>
+            <span class="highlight">Artisans</span>
           </h1>
+
           <p class="hero-subtitle">
-            Find Craft, Trade, Service Skilled<br>
-            Professional
+            Connect instantly with verified experts for craft, trade,<br>
+            and professional home services.
           </p>
 
-          <a *ngIf="isLoggedIn"
-  [routerLink]="'/request-service'" 
-  class="cta-button">
-  Book A Service
-</a>
-         <a 
-  [routerLink]="'/register-choice'" 
-  class="cta-button">
-  Book A Service
-</a>
- 
+          <!-- Visible to all: dynamic routing -->
+          <a 
+            [routerLink]="isLoggedIn ? '/request-service' : '/register-choice'"
+            class="cta-button">
+            Get Started
+          </a>
 
         </div>
       </div>
-             
+
+      <!-- Right Side: Worker Card -->
       <div class="col-lg-6 col-md-6">
         <div class="illustration-container px-4">
-          <div class="worker-card">
+
+          <div class="worker-card shadow-lg">
+
             <div class="craftsman-image-container">
               <img src="assets/images/art.png"
-                    alt="Professional Craftsman"
-                    class="craftsman-image">
+                   alt="Professional Craftsman"
+                   class="craftsman-image">
             </div>
-            <div class="worker-info text-center">
+
+            <div class="worker-info text-center p-3">
               <h4>Professional Craftsman</h4>
-              <p>Expert in multiple trades with 10+ years experience</p>
+              <p class="text-muted">
+                Expert in multiple trades with 10+ years of proven experience
+              </p>
+
               <div class="skill-tags">
                 <span class="skill-tag">Plumbing</span>
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-   See Services
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-    <li *ngFor="let service of serviceTypes">
-      <a class="dropdown-item" href="#">{{ service.name }}</a>
-    </li>
-  </ul>
+
+                <div class="dropdown d-inline-block">
+                  <button class="btn btn-primary btn-sm dropdown-toggle"
+                          type="button"
+                          id="servicesDropdown"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                    See Services
+                  </button>
+
+                  <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                    <li *ngFor="let service of serviceTypes">
+                      <a class="dropdown-item">{{ service.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+
                 <span class="skill-tag">Carpentry</span>
               </div>
             </div>
-            <div class="dropdown mb-3">
-</div>
 
           </div>
+
         </div>
       </div>
+
     </div>
   </div>
+
 </section>
+
 
   <app-services></app-services>
   <app-featured-artisans></app-featured-artisans>

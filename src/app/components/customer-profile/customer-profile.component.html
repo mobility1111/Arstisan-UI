@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>My Profile</h2>
+  <hr>
+
+  <div *ngIf="customer">
+    <p><strong>Full Name:</strong> {{ customer.fullName }}</p>
+    <p><strong>Email:</strong> {{ customer.email }}</p>
+    <p><strong>Phone:</strong> {{ customer.phoneNumber || 'No number added' }}</p>
+
+    <button class="btn btn-primary" (click)="editProfile()">Edit Profile</button>
+    <button class="btn btn-warning ms-2" (click)="changePassword()">Change Password</button>
+
+    <hr class="my-4">
+
+    <!-- CUSTOMER JOB ROUTES -->
+    <h4>Job Options</h4>
+
+    <a routerLink="/customer/create-job" class="btn btn-success mt-2">
+      Create a Job
+    </a>
+
+    <a routerLink="/customer/jobs" class="btn btn-info mt-2 ms-2">
+      My Jobs
+    </a>
+
+    <a routerLink="/customer/confirm-job/123" class="btn btn-secondary mt-2 ms-2">
+      Confirm Job (Sample)
+    </a>
+    <!-- Note: real ID will come dynamically in MyJobs page -->
+  </div>
+</div>

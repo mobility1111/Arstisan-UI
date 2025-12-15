@@ -1,22 +1,43 @@
 <div class="container py-4">
-  <h2 class="text-center mb-4">All Job Requests</h2>
+  <h2 class="text-center mb-4">My Jobs</h2>
 
-  <div *ngIf="jobRequests.length === 0" class="alert alert-info text-center">
-    No job requests found.
-  </div>
+  <!-- <div *ngIf="jobs.length === 0" class="alert alert-info text-center">
+    You have no jobs yet.
+  </div> -->
 
-  <div class="row" *ngIf="jobRequests.length > 0">
-    <div class="col-md-6 mb-4" *ngFor="let job of jobRequests">
+  <!-- <div class="row" *ngIf="jobs.length > 0">
+    <div class="col-md-6 mb-4" *ngFor="let job of jobs">
       <div class="card shadow-sm">
         <div class="card-body">
-          <h5 class="card-title">{{ job.serviceType }}</h5>
-          <p><strong>Customer Name:</strong> {{ job.customerName }}</p>
-          <p><strong>Phone:</strong> {{ job.phoneNumber }}</p>
-          <p><strong>Location:</strong> {{ job.location }}</p>
-          <p><strong>Description:</strong> {{ job.description }}</p>
-          <p><strong>Preferred Date:</strong> {{ job.preferredDate | date }}</p>
+
+          <h5 class="card-title">{{ job.description }}</h5>
+
+          <p><strong>Status:</strong> {{ job.status }}</p>
+
+          <p><strong>Preferred Date:</strong>
+            {{ job.preferredDate | date }}
+          </p>
+
+          <p><strong>Notes:</strong>
+            {{ job.notes || 'None' }}
+          </p>
+
+          <p><strong>Artisan:</strong>
+            {{ job.artisanName ? job.artisanName : 'Not Assigned' }}
+          </p>
+
+          <p><strong>Charge:</strong>
+            {{ job.artisanCharge ? ('₦' + job.artisanCharge) : 'Not Set' }}
+          </p>
+          <a
+            *ngIf="job.status === 'Completed'"
+            class="btn btn-success btn-sm mt-2"
+            [routerLink]="['/customer/confirm-job', job.id]">
+            Confirm Job Completion
+          </a>
+
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

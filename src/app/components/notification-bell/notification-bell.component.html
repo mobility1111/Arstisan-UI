@@ -1,0 +1,115 @@
+<div class="notifications-page" style="max-width: 800px; margin: 80px auto; padding: 20px;">
+  
+  <!-- Page Header -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+    <h2 style="margin: 0; font-size: 28px; font-weight: 600;">Notifications</h2>
+    
+    <button 
+      *ngIf="unreadCount > 0" 
+      (click)="markAllAsRead()"
+      style="padding: 8px 16px; background: #007bff; color: white; border: none; 
+             border-radius: 6px; cursor: pointer; font-size: 14px;">
+      Mark All as Read
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" style="text-align: center; padding: 40px;">
+    <i class="bi bi-hourglass-split" style="font-size: 48px; color: #999;"></i>
+    <p style="margin-top: 15px; color: #666;">Loading notifications...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" 
+       style="padding: 20px; background: #fee; border: 1px solid #f00; 
+              border-radius: 8px; color: #c00; margin-bottom: 20px;">
+    <i class="bi bi-exclamation-triangle" style="margin-right: 8px;"></i>
+    {{ error }}
+    <button (click)="loadNotifications()" 
+            style="margin-left: 15px; padding: 5px 12px; background: white; 
+                   border: 1px solid #c00; border-radius: 4px; cursor: pointer;">
+      Retry
+    </button>
+  </div>
+
+  <!-- Notifications List -->
+  <div *ngIf="!isLoading && !error">
+    
+    <!-- Empty State -->
+    <div *ngIf="notifications.length === 0" 
+         style="text-align: center; padding: 60px 20px; background: #f8f9fa; 
+                border-radius: 12px;">
+      <i class="bi bi-bell-slash" style="font-size: 64px; color: #ccc;"></i>
+      <h3 style="margin-top: 20px; color: #666;">No notifications yet</h3>
+      <p style="color: #999;">You're all caught up!</p>
+    </div>
+
+    <!-- Notification Cards -->
+    <div *ngFor="let n of notifications; let i = index"
+         (click)="openNotification(n)"
+         [style.background]="n.isRead ? '#ffffff' : '#f0f8ff'"
+         style="padding: 20px; margin-bottom: 12px; border: 1px solid #e0e0e0; 
+                border-radius: 10px; cursor: pointer; transition: all 0.2s; 
+                position: relative; overflow: hidden;">
+      
+      <!-- Unread indicator -->
+      <div *ngIf="!n.isRead"
+           style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; 
+                  background: #007bff;">
+      </div>
+
+      <!-- Notification Icon -->
+      <div style="display: flex; gap: 15px;">
+        <div style="flex-shrink: 0; width: 40px; height: 40px; background: #e3f2fd; 
+                    border-radius: 50%; display: flex; align-items: center; 
+                    justify-content: center;">
+          <i class="bi bi-info-circle" style="font-size: 20px; color: #2196f3;"></i>
+        </div>
+
+        <!-- Content -->
+        <div style="flex: 1;">
+          <p style="margin: 0 0 8px 0; font-size: 15px; line-height: 1.5; color: #333; 
+                    font-weight: 500;">
+            {{ n.message || 'No message' }}
+          </p>
+          
+          <small style="color: #999; font-size: 13px;">
+            <i class="bi bi-clock" style="margin-right: 4px;"></i>
+            {{ n.createdAt | date:'medium' }}
+          </small>
+
+          <!-- Read/Unread badge -->
+          <span *ngIf="!n.isRead"
+                style="display: inline-block; margin-left: 12px; padding: 2px 8px; 
+                       background: #007bff; color: white; border-radius: 12px; 
+                       font-size: 11px; font-weight: 600;">
+            NEW
+          </span>
+        </div>
+
+        <!-- Arrow icon -->
+        <div style="flex-shrink: 0; display: flex; align-items: center;">
+          <i class="bi bi-chevron-right" style="font-size: 18px; color: #999;"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats at bottom -->
+  <div *ngIf="!isLoading && notifications.length > 0" 
+       style="margin-top: 30px; padding: 15px; background: #f8f9fa; 
+              border-radius: 8px; text-align: center; color: #666; font-size: 14px;">
+    <strong>{{ notifications.length }}</strong> total notifications
+    <span *ngIf="unreadCount > 0"> • <strong>{{ unreadCount }}</strong> unread</span>
+  </div>
+
+</div>
+
+<!-- Hover effect CSS -->
+<style>
+  .notifications-page > div > div:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+</style>

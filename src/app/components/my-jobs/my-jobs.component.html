@@ -1,0 +1,169 @@
+<div class="jobs-container mt-5">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="text-end mb-3">
+  <a routerLink="/customer/create-job" class="btn btn-primary">
+    + Create New Job
+  </a>
+</div>
+
+    <div class="header-content">
+      <h1 class="page-title">My Jobs</h1>
+      <p class="page-subtitle">Track and manage your service requests</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-card">
+        <span class="stat-number">{{ jobs.length }}</span>
+        <span class="stat-label">Total Jobs</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">{{ getPendingCount() }}</span>
+        <span class="stat-label">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <div class="filter-controls">
+      <button 
+        class="filter-btn" 
+        [class.active]="selectedFilter === 'all'"
+        (click)="filterJobs('all')">
+        All Jobs
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="selectedFilter === 'pending'"
+        (click)="filterJobs('pending')">
+        Pending
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="selectedFilter === 'completed'"
+        (click)="filterJobs('completed')">
+        Completed
+      </button>
+    </div>
+  </div>
+
+  <!-- Jobs List -->
+  <div class="jobs-list">
+    <div *ngIf="paginatedJobs.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+        </svg>
+      </div>
+      <h3>No jobs found</h3>
+      <p>You don't have any jobs matching this filter.</p>
+    </div>
+
+    <div *ngFor="let job of paginatedJobs" class="job-card">
+      <div class="job-header">
+        <div class="job-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+          </svg>
+        </div>
+        <div class="job-title-section">
+          <h3 class="job-title">{{ job.description }}</h3>
+          <span class="job-date">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            {{ job.preferredDate | date:'MMM dd, yyyy' }}
+          </span>
+        </div>
+        <span class="status-badge" [attr.data-status]="getStatusClass(job.status)">
+          {{ getStatusLabel(job.status) }}
+        </span>
+      </div>
+
+      <div class="job-body">
+        <div class="job-details">
+          <div class="detail-item">
+            <span class="detail-label">Job ID:</span>
+            <span class="detail-value">#{{ job.id }}</span>
+          </div>
+          <div class="detail-item" *ngIf="job.artisan?.fullName">
+            <span class="detail-label">Artisan:</span>
+            <span class="detail-value">{{ job.artisan?.fullName }}</span>
+          </div>
+          <div class="detail-item" *ngIf="job.artisanCharge">
+            <span class="detail-label">Price:</span>
+            <span class="detail-value">₦{{ job.artisanCharge| number }}</span>
+          </div>
+        </div>
+
+        <div class="job-actions">
+          <a 
+            *ngIf="job.status === 'AwaitingCustomerConfirmation'"
+            class="btn btn-primary"
+            [routerLink]="['/customer/confirm-job', job.id]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Review & Confirm Job
+          </a>
+
+          <button 
+            class="btn btn-success"
+            *ngIf="job.status === 'WorkCompletedByArtisan'"
+            (click)="confirm(job.id)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Confirm Completion
+          </button>
+
+         <button 
+  class="btn btn-warning"
+  *ngIf="job.status === 'Pending'"
+  [routerLink]="['/customer/job/edit', job.id]">
+  Edit Job
+</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="pagination-container" *ngIf="filteredJobs.length > itemsPerPage">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="goToPage(currentPage - 1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Previous
+        </button>
+      </li>
+
+      <li 
+        class="page-item" 
+        *ngFor="let page of getPageNumbers()"
+        [class.active]="page === currentPage">
+        <button class="page-link" (click)="goToPage(page)">
+          {{ page }}
+        </button>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === getTotalPages()">
+        <button class="page-link" (click)="goToPage(currentPage + 1)">
+          Next
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,83 @@
+/* Page container */
+.charge-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px; /* Nice top spacing */
+}
+
+/* Card style */
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 34px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Gradient title */
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Label */
+.label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #444;
+}
+
+/* Modern Input */
+.modern-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #dcdcdc;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.modern-input:hover {
+  border-color: #b4b4b4;
+}
+
+.modern-input:focus {
+  border-color: #6C3BFF;
+  box-shadow: 0 0 0 3px rgba(108, 59, 255, 0.25);
+}
+
+/* Save button */
+.save-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #0F9BFF, #6C3BFF);
+  transition: all 0.25s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

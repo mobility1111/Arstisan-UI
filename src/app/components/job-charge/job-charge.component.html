@@ -1,0 +1,21 @@
+<div class="charge-container mt-5">
+
+  <div class="card">
+    <h2 class="title">Set Artisan Charge</h2>
+
+    <div class="form-group">
+      <label class="label">Enter Charge (₦)</label>
+
+      <input 
+        type="number" 
+        class="modern-input" 
+        [(ngModel)]="amount" 
+        placeholder="e.g. 15000">
+    </div>
+
+    <button class="save-btn" (click)="setCharge()">
+      Save Charge
+    </button>
+  </div>
+
+</div>

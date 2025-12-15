@@ -1,28 +1,148 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h2 class="mb-4 text-center">Contact Us</h2>
+<!-- contact.component.html -->
 
-      <form (ngSubmit)="sendMessage()" #contactForm="ngForm">
+<!-- Hero Section -->
+<div class="contact-hero">
+  <div class="container">
+    <div class="hero-content text-center">
+      <div class="icon-circle mb-4">
+        <i class="bi bi-envelope-heart-fill"></i>
+      </div>
+      <h1 class="display-4 fw-bold mb-3">Get In Touch</h1>
+      <p class="lead">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label for="name" class="form-label">Your Name</label>
-          <input type="text" id="name" class="form-control" required [(ngModel)]="contact.name" name="name">
+<!-- Contact Form Section -->
+<div class="contact-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- Contact Form -->
+      <div class="col-lg-6 col-md-8">
+        <div class="contact-card">
+          <form (ngSubmit)="sendMessage()" #contactForm="ngForm">
+            
+            <!-- Name Input -->
+            <div class="form-floating mb-4">
+              <input 
+                type="text" 
+                id="name" 
+                class="form-control custom-input" 
+                placeholder="Your Name"
+                required 
+                [(ngModel)]="contact.name" 
+                name="name"
+                #nameInput="ngModel">
+              <label for="name">
+                <i class="bi bi-person-fill me-2"></i>Your Name
+              </label>
+              <div class="invalid-feedback" *ngIf="nameInput.invalid && nameInput.touched">
+                Please enter your name
+              </div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-floating mb-4">
+              <input 
+                type="email" 
+                id="email" 
+                class="form-control custom-input" 
+                placeholder="Your Email"
+                required 
+                email
+                [(ngModel)]="contact.email" 
+                name="email"
+                #emailInput="ngModel">
+              <label for="email">
+                <i class="bi bi-envelope-fill me-2"></i>Your Email
+              </label>
+              <div class="invalid-feedback" *ngIf="emailInput.invalid && emailInput.touched">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <!-- Message Textarea -->
+            <div class="form-floating mb-4">
+              <textarea 
+                id="message" 
+                class="form-control custom-textarea" 
+                placeholder="Your Message"
+                style="height: 150px"
+                required 
+                [(ngModel)]="contact.message" 
+                name="message"
+                #messageInput="ngModel"></textarea>
+              <label for="message">
+                <i class="bi bi-chat-text-fill me-2"></i>Your Message
+              </label>
+              <div class="invalid-feedback" *ngIf="messageInput.invalid && messageInput.touched">
+                Please enter your message
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              class="btn btn-submit w-100"
+              [disabled]="!contactForm.valid">
+              <span *ngIf="!isSubmitting">
+                <i class="bi bi-send-fill me-2"></i>Send Message
+              </span>
+              <span *ngIf="isSubmitting">
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Sending...
+              </span>
+            </button>
+
+          </form>
         </div>
+      </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label">Your Email</label>
-          <input type="email" id="email" class="form-control" required [(ngModel)]="contact.email" name="email">
+      <!-- Contact Info Sidebar -->
+      <div class="col-lg-4 col-md-8 mt-4 mt-lg-0">
+        <div class="info-cards">
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            <h5>Location</h5>
+            <p>Lagos, Nigeria</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <h5>Phone</h5>
+            <p>+234 9031578361</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="bi bi-clock-fill"></i>
+            </div>
+            <h5>Working Hours</h5>
+            <p>Mon - Fri: 9AM - 6PM</p>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label for="message" class="form-label">Your Message</label>
-          <textarea id="message" rows="5" class="form-control" required [(ngModel)]="contact.message" name="message"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary w-100">Send Message</button>
-      </form>
-
+<!-- Success Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999">
+  <div class="toast align-items-center text-white bg-success border-0" 
+       role="alert" 
+       [class.show]="showSuccessToast">
+    <div class="d-flex">
+      <div class="toast-body">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        Message sent successfully!
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="showSuccessToast = false"></button>
     </div>
   </div>
 </div>

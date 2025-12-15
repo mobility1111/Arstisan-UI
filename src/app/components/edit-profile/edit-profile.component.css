@@ -1,0 +1,114 @@
+/* Page container */
+.profile-edit-container {
+  padding: 40px 20px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main Card */
+.profile-edit-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  padding: 35px 40px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Card Title */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #7c8a97;
+  margin-bottom: 25px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs */
+.form-control-neo {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d9e6;
+  background: #f9fafc;
+  transition: 0.3s ease;
+  font-size: 15px;
+}
+
+.form-control-neo:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: #fff;
+}
+
+/* File Input */
+.form-control-file {
+  padding: 10px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  border: 1px solid #d1d9e6;
+}
+
+/* Button Row */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+/* Save Button */
+.btn-save {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background: #005fcc;
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background: #e5e7eb;
+  color: #374151;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-cancel:hover {
+  background: #d1d5db;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

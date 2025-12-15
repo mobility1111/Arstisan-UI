@@ -1,37 +1,74 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CreateJobRequest } from 'src/app/models/DTOs/create-job.dto';
 import { Job } from 'src/app/models/job.model';
+import { environment } from 'src/app/services/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'https://localhost:5001/api/job';
+  private baseUrl = `${environment.baseApiUrl}/api/job`;
 
   constructor(private http: HttpClient) {}
 
-  createJob(job: any): Observable<any> {
-    return this.http.post(this.apiUrl, job);
+  // Customer: Create job
+  createJob(dto: CreateJobRequest): Observable<Job> {
+    return this.http.post<Job>(`${this.baseUrl}/create`, dto);
   }
 
-   getJobRequests(): Observable<Job[]> {
-    return this.http.get<Job[]>(this.apiUrl);
+  // Customer: Get my jobs
+  getMyJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.baseUrl}/my-jobs`);
   }
 
-  getJob(id: string): Observable<Job> {
-    return this.http.get<Job>(`${this.apiUrl}/${id}`);
+  // Customer: Confirm job completion
+  confirmJob(jobId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/customer-confirm/${jobId}`, {});
   }
 
-  assignArtisanToJob(jobId: string, artisanId: string, artisanCharge: number): Observable<any> {
-    const payload = {
-      artisanId: artisanId,
-      artisanCharge: artisanCharge
-    };
-    return this.http.put(`${this.apiUrl}/assign-artisan/${jobId}`, payload);
+  // Admin: Get all jobs
+  getAllJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.baseUrl}/all`);
   }
 
-  updateJobStatus(jobId: string, status: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update-status/${jobId}`, { status });
+  // Admin: Assign artisan
+assignArtisan(jobId: string, artisanId: string) {
+  return this.http.put(`${this.baseUrl}/assign-artisan/${jobId}`, {
+    artisanId: artisanId
+  });
+}
+
+
+  // Admin: Set artisan charge
+setCharge(jobId: string, charge: number) {
+  return this.http.put(`${this.baseUrl}/set-charge/${jobId}`, {
+    artisanCharge: charge
+  });
+}
+
+markJobCompleted(jobId: string) {
+  return this.http.put(`${this.baseUrl}/artisan-completed/${jobId}`, {});
+}
+
+getJobById(id: string) {
+  return this.http.get(`${this.baseUrl}/${id}`);
+}
+
+updateJob(id: string, data: any) {
+  return this.http.put(`${this.baseUrl}/edit/${id}`, data);
+}
+
+
+  // Admin: Mark completed
+  adminMarkCompleted(jobId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/admin-complete/${jobId}`, {});
   }
+
+customerConfirmJob(jobId: string) {
+  return this.http.put(`${this.baseUrl}/customer-confirm/${jobId}`, {});
+}
+
+
 }

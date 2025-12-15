@@ -1,0 +1,58 @@
+<div class="job-wrapper">
+
+  <div class="job-card">
+
+    <h2 class="job-title">Post a New Job</h2>
+    <p class="job-subtitle">Fill in the details below to submit your request</p>
+
+    <form [formGroup]="jobForm" (ngSubmit)="createJob()">
+
+      <!-- Description -->
+      <div class="form-group-modern">
+        <label>Description</label>
+        <textarea
+          formControlName="description"
+          placeholder="Describe the job you want done..."></textarea>
+      </div>
+
+      <!-- Preferred Date -->
+      <div class="form-group-modern">
+        <label>Preferred Date</label>
+        <input type="date" formControlName="preferredDate" />
+      </div>
+
+      <!-- Category -->
+      <div class="form-group-modern">
+        <label>Category</label>
+        <input
+          type="text"
+          formControlName="category"
+          placeholder="e.g., Plumbing, Electrical, Painting" />
+      </div>
+
+      <!-- Location -->
+      <div class="form-group-modern">
+        <label>Location</label>
+        <input
+          type="text"
+          formControlName="location"
+          placeholder="Enter your location" />
+      </div>
+
+      <!-- Notes -->
+      <div class="form-group-modern">
+        <label>Additional Notes</label>
+        <textarea
+          formControlName="notes"
+          placeholder="Any extra instructions or important information?"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="btn-submit" [disabled]="!jobForm.valid">
+        Create Job
+      </button>
+
+    </form>
+
+  </div>
+</div>

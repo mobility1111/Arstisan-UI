@@ -1,87 +1,316 @@
-<!-- HTML -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top" style="min-height: 80px;">
-  <div class="container">
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top modern-navbar">
+  <div class="container-fluid px-lg-4">
+    <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center" routerLink="/landing">
-      <span class="fs-3 fw-bold me-2" style="color: yellow;">F</span>
-      <span class="fw-semibold">FixitNow</span>
+      <div class="brand-wrapper">
+        <span class="brand-icon">H</span>
+      </div>
+      <span class="brand-text">HandyHire</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Right side buttons container (mobile) -->
+    <div class="d-flex align-items-center gap-2 d-lg-none">
+      <!-- User greeting (mobile, logged in) -->
+      <div 
+        class="user-avatar" 
+        *ngIf="isLoggedIn"
+        routerLink="/artisan/profile"
+        style="cursor:pointer;"
+      >
+        <span>{{ currentUserFullName?.charAt(0) || 'U' }}</span>
+      </div>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <!-- Sidebar toggle button -->
+      <button
+        class="btn btn-menu"
+        type="button"
+        (click)="toggleMobileMenu()"
+        aria-label="Toggle menu"
+      >
+        <i class="bi" [ngClass]="mobileMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+      </button>
+    </div>
+
+    <!-- Desktop Nav Links -->
+    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
       <ul class="navbar-nav align-items-center">
+
         <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/landing">Home</a>
+          <a class="nav-link" routerLink="/landing" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+       Home
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/about">About</a>
+          <a class="nav-link" routerLink="/locations" routerLinkActive="active">
+           By Location
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/services">Services</a>
+          <a class="nav-link" routerLink="/services" routerLinkActive="active">
+            Services
+          </a>
         </li>
+
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link text-white" routerLink="/artisans">Artisans</a>
+          <a class="nav-link" routerLink="/artisans" routerLinkActive="active">
+            Find Artisans
+          </a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
-  <a class="nav-link text-white" routerLink="/request-service">Request a Service</a>
+
+        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Admin'">
+  <a routerLink="/admin/dashboard" class="nav-link">Dashboard</a>
 </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/contact">Contact</a>
-        </li>
- <li class="nav-item ms-3" *ngIf="!isLoggedIn">
-    <a class="btn btn-info text-white px-3 py-2 rounded-pill" routerLink="/register-choice">
-      Sign Up/Login
-    </a>
-  </li>
 
-  <li class="nav-item ms-3" *ngIf="isLoggedIn">
-    <span class="text-white me-3">Hi, {{ currentUserFullName }}</span>
-    <button class="btn btn-warning px-3 py-2 rounded-pill" (click)="logout()">Logout</button>
-  </li>
-</ul>
+        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+          <a class="nav-link" routerLink="/customer/create-job" routerLinkActive="active">Post Job
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Admin'">
+          <a class="nav-link" routerLink="/admin/jobs" routerLinkActive="active">All Jobs
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+          <a class="nav-link" routerLink="/customer/jobs" routerLinkActive="active">My Jobs
+          </a>
+        </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">
+            Contact
+          </a>
+        </li>
+<!-- NOTIFICATION BELL (Desktop) -->
+<li class="nav-item notification-wrapper" *ngIf="isLoggedIn" style="position: relative;">
+  <a class="nav-link" style="cursor: pointer; position: relative;" (click)="goToNotificationsPage()">
+    <i class="bi bi-bell notification-bell"></i>
+
+    <!-- RED BADGE -->
+    <span class="notification-badge" 
+          *ngIf="unreadCount > 0"
+          style="position: absolute; top: 5px; right: 5px; background: #dc3545; color: white; 
+                 border-radius: 50%; width: 18px; height: 18px; display: flex; 
+                 align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">
+      {{ unreadCount }}
+    </span>
+  </a>
+</li>
+
+
+        <!-- Guest -->
+        <li class="nav-item ms-3" *ngIf="!isLoggedIn">
+          <a class="btn btn-auth" routerLink="/register-choice">
+            <i class="bi bi-box-arrow-in-right me-2"></i>
+            Sign Up / Login
+          </a>
+        </li>
+
+        <!-- LOGGED IN USER SECTION -->
+        <li class="nav-item ms-3" *ngIf="isLoggedIn">
+          <div class="user-section">
+
+            <!-- Profile Link Added Here -->
+           <a *ngIf="currentUserRole === 'Artisan'"
+   class="nav-link profile-link d-flex align-items-center"
+   routerLink="/artisan/profile">
+  <div class="user-avatar small">
+    <span>{{ currentUserFullName?.charAt(0) || 'U' }}</span>
+  </div>
+  <span class="ms-2">Profile</span>
+</a>
+
+<a *ngIf="currentUserRole === 'Customer'"
+   class="nav-link profile-link d-flex align-items-center"
+   routerLink="/customer/profile">
+  <div class="user-avatar small">
+    <span>{{ currentUserFullName?.charAt(0) || 'U' }}</span>
+  </div>
+  <span class="ms-2">Profile</span>
+</a>
+
+
+            <div class="user-info">
+              <span class="user-greeting">Hi, {{ currentUserFullName }}</span>
+              <span class="user-role">{{ currentUserRole }}</span>
+            </div>
+
+            <button class="btn btn-logout" (click)="logout()" title="Logout">
+              <i class="bi bi-box-arrow-right"></i>
+            </button>
+          </div>
+        </li>
+
+      </ul>
     </div>
   </div>
 </nav>
 
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
 
-<!-- Updated CSS -->
-<style>
-.navbar {
-  min-height: 80px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
+<!-- Mobile Sidebar -->
+<div class="sidebar" [class.active]="mobileMenuOpen">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">
+      <div class="brand-wrapper">
+        <span class="brand-icon">H</span>
+      </div>
+      <span class="brand-text">HandyHire</span>
+    </div>
+  </div>
 
-.navbar-brand span:first-child {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
-}
+  <div class="sidebar-content">
 
-.nav-link {
-  font-weight: 500;
-  padding: 0.75rem 1rem !important;
-}
+    <!-- Logged-in User Panel -->
+    <div class="sidebar-user-section" *ngIf="isLoggedIn">
+      <div class="sidebar-user-card">
+        <div class="user-avatar large">
+          <span>{{ currentUserFullName?.charAt(0) || 'U' }}</span>
+        </div>
+        <div class="user-details">
+          <span class="user-name">{{ currentUserFullName }}</span>
+          <span class="user-role-badge">{{ currentUserRole }}</span>
+        </div>
+      </div>
+    </div>
 
-.nav-link:hover {
-  color: #d1ecf1 !important;
-}
+    <!-- Sidebar Navigation -->
+    <ul class="sidebar-nav">
 
-.btn-info {
-  background-color: #17c1e8;
-  border: none;
-}
+      <li>
+        <a class="sidebar-link" routerLink="/landing" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-house-door"></i>
+          <span>Home</span>
+        </a>
+      </li>
 
-.btn-info:hover {
-  background-color: #11b2d3;
-}
+      
+        <li class="sidebar-link" *ngIf="isLoggedIn && currentUserRole === 'Admin'">
+  <a routerLink="/admin/dashboard" class="nav-link">Dashboard</a>
+</li>
 
-/* Add padding to body to account for fixed navbar */
-body {
-  padding-top: 80px;
-}
-</style>
+
+        <li class="sidebar-link" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+          <a class="nav-link" routerLink="/customer/create-job" routerLinkActive="active">Post Job
+          </a>
+        </li>
+
+        <li class="sidebar-link" *ngIf="isLoggedIn && currentUserRole === 'Admin'">
+          <a class="nav-link" routerLink="/admin/jobs" routerLinkActive="active">All Jobs
+          </a>
+        </li>
+
+        <li class="sidebar-link" *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+          <a class="nav-link" routerLink="/customer/jobs" routerLinkActive="active">My Jobs
+          </a>
+        </li>
+        
+      <li>
+        <a class="sidebar-link" routerLink="/about" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-info-circle"></i>
+          <span>About</span>
+        </a>
+      </li>
+
+<!-- NOTIFICATION BELL (Mobile Sidebar) -->
+<li *ngIf="isLoggedIn">
+  <a class="sidebar-link" 
+     routerLink="/notifications" 
+     routerLinkActive="active" 
+     (click)="toggleMobileMenu()"
+     style="position: relative;">
+    <i class="bi bi-bell"></i>
+    <span>Notifications</span>
+    
+    <!-- RED BADGE -->
+    <span class="notification-badge" 
+          *ngIf="unreadCount > 0"
+          style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); 
+                 background: #dc3545; color: white; border-radius: 50%; 
+                 width: 20px; height: 20px; display: flex; align-items: center; 
+                 justify-content: center; font-size: 11px; font-weight: bold;">
+      {{ unreadCount }}
+    </span>
+  </a>
+</li>
+
+      <li>
+        <a class="sidebar-link" routerLink="/services" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-grid-3x3-gap"></i>
+          <span>Services</span>
+        </a>
+      </li>
+
+      <li *ngIf="isLoggedIn">
+        <a class="sidebar-link" routerLink="/artisans" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-people"></i>
+          <span>Artisans</span>
+        </a>
+      </li>
+
+      <li *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+        <a class="sidebar-link" routerLink="/request-service" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-plus-circle"></i>
+          <span>Request Service</span>
+        </a>
+      </li>
+
+      <!-- PROFILE (Mobile) -->
+      <li *ngIf="isLoggedIn && currentUserRole === 'Artisan'">
+  <a class="sidebar-link" 
+     routerLink="/artisan/profile" 
+     routerLinkActive="active" 
+     (click)="toggleMobileMenu()">
+    <i class="bi bi-person-circle"></i>
+    <span>Profile</span>
+  </a>
+</li>
+
+<li *ngIf="isLoggedIn && currentUserRole === 'Customer'">
+  <a class="sidebar-link" 
+     routerLink="/customer/profile" 
+     routerLinkActive="active" 
+     (click)="toggleMobileMenu()">
+    <i class="bi bi-person-circle"></i>
+    <span>Profile</span>
+  </a>
+</li>
+
+
+      <li>
+        <a class="sidebar-link" routerLink="/contact" routerLinkActive="active" (click)="toggleMobileMenu()">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+
+      <!-- Guest -->
+      <div *ngIf="!isLoggedIn">
+        <a class="btn btn-auth w-100" routerLink="/register-choice" (click)="toggleMobileMenu()">
+          <i class="bi bi-box-arrow-in-right me-2"></i>
+          Sign Up / Login
+        </a>
+      </div>
+
+      <!-- Logged in -->
+      <div *ngIf="isLoggedIn">
+        <button class="btn btn-logout-full w-100" (click)="logout()">
+          <i class="bi bi-box-arrow-right me-2"></i>
+          Logout
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

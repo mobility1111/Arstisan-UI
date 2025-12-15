@@ -28,46 +28,46 @@ export class JobDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.jobId = this.route.snapshot.paramMap.get('id')!;
-    this.loadJobDetails();
+    //this.loadJobDetails();
   }
 
-  loadJobDetails() {
-    this.jobService.getJob(this.jobId).subscribe(res => {
-      this.job = res;
-      this.loadAvailableArtisans();
-    });
-  }
+  // loadJobDetails() {
+  //   this.jobService.getJob(this.jobId).subscribe(res => {
+  //     this.job = res;
+  //     this.loadAvailableArtisans();
+  //   });
+  // }
 
-  loadAvailableArtisans() {
-    this.artisanService.getArtisans().subscribe(res => {
-      // Filter artisans based on job service and location
-      this.availableArtisans = res.filter(artisan =>
-        artisan.serviceId.toLowerCase() === this.job.serviceType.toLowerCase() &&
-        artisan.locationId.toLowerCase() === this.job.location.toLowerCase()
-      );
-    });
-  }
+  // loadAvailableArtisans() {
+  //   this.artisanService.getArtisans().subscribe(res => {
+  //     // Filter artisans based on job service and location
+  //     this.availableArtisans = res.filter(artisan =>
+  //       artisan.serviceId.toLowerCase() === this.job.serviceType.toLowerCase() &&
+  //       artisan.locationId.toLowerCase() === this.job.location.toLowerCase()
+  //     );
+  //   });
+  // }
 
-  computeTotal(): number {
-    return this.artisanCharge + this.commissionRate;
-  }
+  // computeTotal(): number {
+  //   return this.artisanCharge + this.commissionRate;
+  // }
 
-  assignArtisan() {
-    if (!this.selectedArtisanId || this.artisanCharge <= 0) {
-      alert('Please select an artisan and enter a valid charge.');
-      return;
-    }
+  // assignArtisan() {
+  //   if (!this.selectedArtisanId || this.artisanCharge <= 0) {
+  //     alert('Please select an artisan and enter a valid charge.');
+  //     return;
+  //   }
 
-    this.jobService.assignArtisanToJob(this.jobId, this.selectedArtisanId, this.artisanCharge)
-      .subscribe(() => {
-        alert('Artisan assigned successfully!');
-        this.loadJobDetails();  // Refresh job details
-      });
-  }
+  //   this.jobService.assignArtisanToJob(this.jobId, this.selectedArtisanId, this.artisanCharge)
+  //     .subscribe(() => {
+  //       alert('Artisan assigned successfully!');
+  //       this.loadJobDetails();  // Refresh job details
+  //     });
+  // }
 
-  updateJobStatus() {
-    this.jobService.updateJobStatus(this.jobId, this.job.status).subscribe(() => {
-      alert('Job status updated!');
-    });
-  }
+  // updateJobStatus() {
+  //   this.jobService.updateJobStatus(this.jobId, this.job.status).subscribe(() => {
+  //     alert('Job status updated!');
+  //   });
+  // }
 }

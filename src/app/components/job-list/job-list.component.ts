@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { JobRequestService } from 'src/app/services/job-request.service';
+
+import { Job } from 'src/app/models/job.model';
+import { JobService } from '../services/job.service';
 
 @Component({
   selector: 'app-job-list',
@@ -7,21 +9,22 @@ import { JobRequestService } from 'src/app/services/job-request.service';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  jobRequests: any[] = [];
 
-  constructor(private jobRequestService: JobRequestService) {}
+  jobRequests: Job[] = [];
 
-  ngOnInit() {
-    this.loadJobRequests();
+  constructor(private jobService: JobService) {}
+
+  ngOnInit(): void {
+    this.loadJobs();
   }
 
-  loadJobRequests() {
-    this.jobRequestService.getJobRequests().subscribe({
-      next: (data) => {
+  loadJobs(): void {
+    this.jobService.getMyJobs().subscribe({
+      next: (data: Job[]) => {
         this.jobRequests = data;
       },
-      error: (err) => {
-        console.error('Failed to load job requests:', err);
+      error: (err: any) => {
+        console.error("Failed to load jobs", err);
       }
     });
   }
